@@ -10,7 +10,7 @@ zerops:
               - docker build -t deeix-chat-lite:v1 .
           initCommands:
               - docker rm -f deeix-chat-lite
-          start: docker run --name deeix-chat-lite --network host -e GIN_MODE -e JWT_SECRET -e DATA_ENCRYPTION_KEY -e CORS_ALLOW_ORIGIN
+          start: docker run --name deeix-chat-lite --network host -e GIN_MODE -e JWT_SECRET -e DATA_ENCRYPTION_KEY -e CORS_ALLOW_ORIGIN deeix-chat-lite:v1
           ports:
               - port: 8080
                 httpSupport: true
