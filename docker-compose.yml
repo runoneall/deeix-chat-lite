@@ -8,6 +8,8 @@ services:
             - JWT_SECRET
             - DATA_ENCRYPTION_KEY
             - CORS_ALLOW_ORIGIN
+            - PUBLIC_API_BASE_URL
+            - PUBLIC_WEB_BASE_URL
         container_name: deeix-chat-app
         volumes:
             - app_storage:/app/storage
