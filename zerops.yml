@@ -1,14 +1,20 @@
 zerops:
     - setup: docker
       build:
-          deployFiles: ./docker-compose.yml
-          addToRunPrepare: ./docker-compose.yml
+          base: docker@latest
+          buildCommands:
+              - docker build -t deeix-chat-lite:v1 .
+              - docker save -o deeix-chat-lite.tar deeix-chat-lite:v1
+          deployFiles:
+              - deeix-chat-lite.tar
 
       run:
           base: docker@latest
           prepareCommands:
-              - docker compose pull
-          start: docker compose up --force-recreate
+              - docker load -i deeix-chat-lite.tar
+          initCommands:
+              - docker rm -f deeix-chat-lite
+          start: docker run --name deeix-chat-lite -e GIN_MODE -e JWT_SECRET -e DATA_ENCRYPTION_KEY -e CORS_ALLOW_ORIGIN
           ports:
               - port: 8080
                 httpSupport: true
