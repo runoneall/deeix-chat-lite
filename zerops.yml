@@ -1,17 +1,13 @@
 zerops:
     - setup: docker
       build:
-          base: docker@latest
-          buildCommands:
-              - docker build -t deeix-chat-lite:v1 .
-              - docker save -o deeix-chat-lite.tar deeix-chat-lite:v1
           deployFiles:
-              - deeix-chat-lite.tar
+              - Dockerfile
 
       run:
           base: docker@latest
           prepareCommands:
-              - docker load -i deeix-chat-lite.tar
+              - docker build -t deeix-chat-lite:v1 .
           initCommands:
               - docker rm -f deeix-chat-lite
           start: docker run --name deeix-chat-lite -e GIN_MODE -e JWT_SECRET -e DATA_ENCRYPTION_KEY -e CORS_ALLOW_ORIGIN
