@@ -8,6 +8,7 @@ services:
             - GIN_MODE
             - JWT_SECRET
             - DATA_ENCRYPTION_KEY
+            - CORS_ALLOW_ORIGIN
         container_name: deeix-chat-app
         volumes:
             - app_storage:/app/storage

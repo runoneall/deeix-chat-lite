@@ -6,10 +6,6 @@ zerops:
 
       run:
           base: docker@latest
-          envVariables:
-              GIN_MODE: ${GIN_MODE}
-              JWT_SECRET: ${JWT_SECRET}
-              DATA_ENCRYPTION_KEY: ${DATA_ENCRYPTION_KEY}
           prepareCommands:
               - docker compose pull
           start: docker compose up --force-recreate
