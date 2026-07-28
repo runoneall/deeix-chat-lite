@@ -5,7 +5,6 @@ services:
         image: ghcr.io/deeix-ai/deeix-chat:latest
         network_mode: host
         environment:
-            - GIN_MODE
             - JWT_SECRET
             - DATA_ENCRYPTION_KEY
             - CORS_ALLOW_ORIGIN
